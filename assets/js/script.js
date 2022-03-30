@@ -40,7 +40,7 @@ var span= document.querySelectorAll('span');
 var i=0;
 var score= 0;
 
-//function to display questions
+//Function to display questions
 function displayQuestion(){
     for(var a=0;a<span.length;a++){
         span[a].style.background='none';
@@ -50,10 +50,10 @@ function displayQuestion(){
     option1.innerHTML= questionBank[i].option[1];
     option2.innerHTML= questionBank[i].option[2];
     option3.innerHTML= questionBank[i].option[3];
-    stat.innerHTML= "Question"+' '+(i+1)+' '+'of'+' '+questionBank.length;
+    questionCount.innerHTML= "Question"+' '+(i+1)+' '+'of'+' '+questionBank.length;
 }
 
-//function to calculate scores
+//Function to calculate scores
 function calcScore(e){
     if(e.innerHTML===questionBank[i].answer && score<questionBank.length)
     {
@@ -66,7 +66,7 @@ function calcScore(e){
     setTimeout(nextQuestion,300);
 }
 
-//function to display next question
+//Function to display next question
 function nextQuestion(){
     if(i<questionBank.length-1)
     {
@@ -80,7 +80,7 @@ function nextQuestion(){
     }
 }
 
-//click events to next button
+//Click events to next button
 next.addEventListener('click',nextQuestion);
 
 //Back to Quiz button event
@@ -88,7 +88,7 @@ function backToQuiz(){
     location.reload();
 }
 
-//function to check Answers
+//Function to check Answers
 function checkAnswer(){
     var answerBank= document.getElementById('answerBank');
     var answers= document.getElementById('answers');
@@ -106,6 +106,7 @@ function checkAnswer(){
 displayQuestion();
 
 
+//Countdown timer
 const startingMinutes  = 1;
 let time = startingMinutes * 60;
 
