@@ -117,3 +117,8 @@ var downloadTimer = setInterval(function(){
     }
     timeleft -= 1;
 }, 1000);
+
+
+function refresh(){
+    window.location.reload("Refresh")
+  }
