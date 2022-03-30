@@ -103,7 +103,10 @@ button:active{
 #score-title{
     margin: 1rem 0;
 }
-#score-btn,#check-answer{
+#score-btn-one,#check-answer{
+    margin-top: 1rem;
+}
+#score-btn-two{
     margin-top: 1rem;
 }
 #score{
