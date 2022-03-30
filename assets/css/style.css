@@ -1,16 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Heebo:wght@300&display=swap');
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 body{
-    font-family: sans-serif;
+    font-family: Heebo, sans-serif;
   background: linear-gradient(115deg, rgba(101,151,209,0.8),rgba(202,102,211,0.5)),url(/quizbg.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh;
 }
+
+h2, h3 {
+    font-family: Heebo, sans-serif;
+    letter-spacing: 1px;
+    color: black;
+}
+
 img{
     width: 5.5rem;
     height: 5.2rem;
@@ -25,7 +34,7 @@ img{
     font-size: 3rem;
     color: rgb(49,70,7);
     background: rgba(105,224,90,0.55);
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Bebas Neue, Times, serif;
 }
 .questions{
     margin: 3rem auto;
