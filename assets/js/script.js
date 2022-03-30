@@ -112,14 +112,24 @@ let time = startingMinutes * 60;
 
 const countdownEl = document.getElementById('countdown');
 
+// Call the function below every second (1000 miliseconds)
 setInterval(updateCountdown, 1000);
 
 function updateCountdown() {
     const minutes = Math.floor(time / 60);
     let seconds = time % 60;
 
+// using ternary operator so the timer counts down properly
     seconds = seconds < 10 ? '0' + seconds : seconds;
 
     countdownEl.innerHTML = `${minutes}: ${seconds}`;
     time--;
+    
+    if (seconds === 55) {
+        clearTimeout(updateCountdown); 
+        alert(`Oh no! You've have run out of time. Don't worry, you can try again.`); // displays prompt message on screen to the user
+        throw `Player ran out of time. Need to restart the game`; // log an error in the console
+        
+    } 
+   
 }
