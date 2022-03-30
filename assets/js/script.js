@@ -105,7 +105,7 @@ displayQuestion();
 
 // Countdown timer
 
-var timeleft = 60;
+var timeleft = 10;
 var downloadTimer = setInterval(function(){
     if(timeleft === -1){
         clearInterval(downloadTimer);
@@ -116,6 +116,7 @@ var downloadTimer = setInterval(function(){
     document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
     }
     timeleft -= 1;
+
 }, 1000);
 
 
