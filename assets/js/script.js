@@ -122,7 +122,7 @@ var downloadTimer = setInterval(function(){
 
 }, 1000);
 
-// Created a counter variable that counts up to five and stop the alert from displaying.
+// Created a counter variable that counts up to five clicks for the 'Next' button and stops the alert from displaying.
 document.getElementById("next").onclick = function() {myFunction()};
   var count = 0 ;
   
