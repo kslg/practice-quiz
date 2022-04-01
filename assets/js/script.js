@@ -122,7 +122,7 @@ var downloadTimer = setInterval(function(){
 
 }, 1000);
 
-
+// Created a counter variable that counts up to five and stop the alert from displaying.
 document.getElementById("next").onclick = function() {myFunction()};
   var count = 0 ;
   
@@ -133,7 +133,7 @@ count+=1;
         
 }
 
-
+// Connected to the Reset button and reloads the page so the player can retsart the quiz and the timer.
 function refresh(){
     window.location.reload("Refresh")
   }
