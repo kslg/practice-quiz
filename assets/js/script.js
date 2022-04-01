@@ -106,12 +106,15 @@ displayQuestion();
 // Countdown timer
 
 var timeleft = 10;
+
 var downloadTimer = setInterval(function(){
+
     if(timeleft === -1){
         clearInterval(downloadTimer);
         document.getElementById("countdown").innerHTML = "Times Up!";
         alert(`Oh no! You've have run out of time. Hit the reset button and try again.`); // displays prompt message on screen to the user
         throw `Player ran out of time. Need to restart the game`; // logs an error in the console
+
     } else {
     document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
     }
@@ -119,6 +122,18 @@ var downloadTimer = setInterval(function(){
 
 }, 1000);
 
+function countdownstop(){
+    var next= document.getElementById('next');
+
+    $(document).ready(function(){
+    var count = 0 ;
+    $("next").click(function(){
+        count+=1;
+        if (count==5)        
+            alert = function(){};
+        });
+    });
+}
 
 function refresh(){
     window.location.reload("Refresh")
