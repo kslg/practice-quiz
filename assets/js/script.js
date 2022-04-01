@@ -122,18 +122,17 @@ var downloadTimer = setInterval(function(){
 
 }, 1000);
 
-function countdownstop(){
-    var next= document.getElementById('next');
 
-    $(document).ready(function(){
-    var count = 0 ;
-    $("next").click(function(){
-        count+=1;
+document.getElementById("next").onclick = function() {myFunction()};
+  var count = 0 ;
+  
+function myFunction() {
+count+=1;
         if (count==5)        
-            alert = function(){};
-        });
-    });
+              alert = function() {};
+        
 }
+
 
 function refresh(){
     window.location.reload("Refresh")
