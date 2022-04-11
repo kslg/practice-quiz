@@ -1,29 +1,29 @@
 //Question bank
 var questionBank = [
     {
-        question : 'Question 1',
-        option : ['Answer1', 'Answer2', 'Answer3', 'Answer4'],
-        answer : 'Answer1'
+        question : 'Where does Peter Parker live?',
+        option : ['L.A', 'Chicago', 'Punjab', 'New York'],
+        answer : 'New York'
     },
     {
-        question : 'Question 2',
-        option : ['Answer1', 'Answer2', 'Answer3', 'Answer4'],
-        answer : 'Answer1'
+        question : 'Who made the suit Peter wore for most of the movie?',
+        option : ['Bruce Banner', 'Aunt May', 'Tony Stark', 'I did!'],
+        answer : 'Tony Stark'
     },
     {
-        question : 'Question 3',
-        option : ['Answer1', 'Answer2', 'Answer3', 'Answer4'],
-        answer : 'Answer1'
+        question : 'Name the high-tech glasses in &#39;Far From Home&#39;',
+        option : ['J.U.L.Y.', 'E.D.I.T.H.', 'S.H.I.E.L.D.', 'B.O.B'],
+        answer : 'E.D.I.T.H.'
     },
     {
-        question : 'Question 4',
-        option : ['Answer1', 'Answer2', 'Answer3', 'Answer4'],
-        answer : 'Answer1'
+        question : 'Finish the quote: "With great power comes great..."',
+        option : ['Responsibility', 'Catastrophe', 'Sensibility', 'Accountability'],
+        answer : 'Responsibility'
     },
     {
-        question : 'Question 5',
-        option : ['Answer1', 'Answer2', 'Answer3', 'Answer4'],
-        answer : 'Answer1'
+        question : 'In Tobey Maguire&#39;s Spider-Man, how does he shoot webs?',
+        option : ['Using Web Shooters', 'From his wrists', 'From his finger nails', 'They magically appear'],
+        answer : 'From his wrists'
     }
 ];
 
@@ -74,9 +74,9 @@ function nextQuestion(){
         points.innerHTML= score+ '/'+ questionBank.length;
         quizContainer.style.display= 'none';
         scoreboard.style.display= 'block'
+        delete window.alert
     }
 }
-
 //Click events to next button
 next.addEventListener('click',nextQuestion);
 
@@ -99,41 +99,61 @@ function checkAnswer(){
         answers.appendChild(list);
     }
 }
-
-
 displayQuestion();
 
-// Countdown timer
+/** 
+ * Countdown timer which shows a window alert 
+ * if the player does not complete the quiz before the countdown ends
+ * if the player does complete the quiz before the countdown ends, then the window alert does not show
+ */ 
+ document.getElementById("gameStart").addEventListener("click", function(){
+    document.getElementById("question-buttons").style.display = "block"
+    document.getElementById("welcome-text").style.display = "none"
+    var timeleft = 60;
 
-var timeleft = 10;
-
-var downloadTimer = setInterval(function(){
-
-    if(timeleft === -1){
-        clearInterval(downloadTimer);
-        document.getElementById("countdown").innerHTML = "Times Up!";
-        alert(`Oh no! You've have run out of time. Hit the reset button and try again.`); // displays prompt message on screen to the user
-        throw `Player ran out of time. Need to restart the game`; // logs an error in the console
-
-    } else {
-    document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
-    }
+    var downloadTimer = setInterval(function function1(){
     timeleft -= 1;
+    document.getElementById("countdown").innerHTML = timeleft + 
+    " " + "seconds remaining";
+    if(timeleft <= -1){
+        console.log(i)
+        alert("Oh no! Times up. Don't worry, you can try again.");
+        document.getElementById("countdown").innerHTML = "Time is up!"
+        clearInterval(downloadTimer);
+    }
+    }, 1000);
+});
 
-}, 1000);
-
-// Created a counter variable that counts up to five clicks for the 'Next' button and stops the alert from displaying.
-document.getElementById("next").onclick = function() {myFunction()};
-  var count = 0 ;
-  
-function myFunction() {
-count+=1;
-        if (count==5)        
-              alert = function() {};
-        
-}
-
-// Connected to the Reset button and reloads the page so the player can retsart the quiz and the timer.
+/** 
+ * Connected to the Reset button and 
+ * reloads the page so the player 
+ * can retsart the quiz and the timer.
+ */ 
 function refresh(){
     window.location.reload("Refresh")
   }
+
+// Dark Mode function
+let themeToggler = document.getElementById('theme-toggler');
+
+themeToggler.onclick = () => {
+  themeToggler.classList.toggle('fa-sun');
+
+  if (themeToggler.classList.contains('fa-sun')) {
+    document.body.classList.add('active');
+  } else {
+    document.body.classList.remove('active');
+  }
+};
+// Modal function
+const overlay = document.querySelector("#overlay");
+  document.querySelector("#show-modal-btn").
+  addEventListener("click", () => {
+      overlay.style.display = "block";
+  })
+  document.querySelector("#close-modal-btn").
+  addEventListener("click", () => {
+      overlay.style.display = "none";
+  })
+  const modalOverlay = document.getElementById("overlay")
+  modalOverlay.classList.add('hide')

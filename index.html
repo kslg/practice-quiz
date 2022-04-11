@@ -1,64 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- This is the SEO meta data -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An unofficial quiz game inspired by the comic book hero Spider-man.">
+    <meta name="keywords" content="spider-man, spiderman, spiderman game, quiz games, spidey games, spider-man quiz">
+    <meta name="author" content="Krishan Gharu for Code Institute Portfolio Project 2">
+    <!-- Font Awesome Kit for Dark Mode -->
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+    />
     <!-- css file link -->
-  <link href="/assets/css/style.css" rel="stylesheet" type="text/css" />
-  <title>Spider-Quiz</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 
+    <!--To get your favicon displaying in Production-->
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico'/>
 
+    <title>Spider-Quiz</title>
+
+    <!-- The JS source for the Share This widget. Instructed by ShareThis to add the code here -->
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=624caa3dc431db0019ab9ada&product=inline-share-buttons" async="async"></script>
 </head>
 <body>
-    <!--<img src="/logo.png" alt="img" id="img" class="img">-->
-
-    <h1 id="title">Spider-Quiz</h1>
-
-    <!-- quiz-container -->
-    <div id="quiz-container">
-        <!-- question container -->
-        <div class="questions">
-            <div id="countdown"></div>
-
-            <!--<div id='timer'> 
-            </div>-->
-
-            <div id="question"></div>
-            <ol type="A">
-                <li class="option"><span id="option0" onclick="calcScore(this)"></span></li>
-                <li class="option"><span id="option1" onclick="calcScore(this)"></span></li>
-                <li class="option"><span id="option2" onclick="calcScore(this)"></span></li>
-                <li class="option"><span id="option3" onclick="calcScore(this)"></span></li>
-            </ol>
-            <div id="questionCount"></div>
+    <!-- This is the header section -->
+    <header>
+        <div id="theme-toggler" class="fas fa-moon" role="button" aria-label="Toggle between light and dark mode"></div>
+        <h1 id="title">Spider-Quiz</h1>
+    </header>
+    <!-- This section is the entire game and score area -->
+    <section>
+        <div class="gameArea" role="none" aria-hidden="true">
+            <!-- quiz and scoreboard container -->    
+            <div class="container">
+                <!-- quiz container -->
+                <div id="quiz-container">
+                    <!-- question container -->
+                    <div class="questions" role="presentation" aria-label="This is the questions area for the quiz. There are five multiple-choice questions">
+                        <!-- Countdown timer -->
+                        <div id="countdown" role="presentation" aria-label="This is the countdown timer">
+                        </div>
+                        <h2 id="welcome-text">Welcome to the Spider-Quiz!</h2>
+                        <div id="question-buttons">
+                            <!-- Quiz questions -->
+                            <div id="question">
+                            </div>
+                                <ol type="A">
+                                    <li class="option"><span id="option0" onclick="calcScore(this)"></span></li>
+                                    <li class="option"><span id="option1" onclick="calcScore(this)"></span></li>
+                                    <li class="option"><span id="option2" onclick="calcScore(this)"></span></li>
+                                    <li class="option"><span id="option3" onclick="calcScore(this)"></span></li>
+                                </ol>
+                                <!-- Question count -->
+                                <div id="questionCount" role="presentation" aria-label="This is the question counter, counting up to five">
+                                </div>     
+                            </div>                     
+                    </div>
+                    <!-- Quiz Control Buttons -->
+                    <div class="buttons">
+                        <button type="button" id="gameStart" class="gameStart" aria-labelledby="gameStart" aria-label="Start the timer">Start</button>
+                        <button type="button" id="next" class="next" aria-labelledby="next" aria-label="Next question">Next</button>
+                        <button type="button" value="Refresh" onClick="refresh(this)" aria-label="Reset quiz">Reset</button>
+                        <!-- Trigger the modal with a button -->
+                        <button type="button" id="show-modal-btn" aria-labelledby="show-modal-btn" aria-label="Click for instructions">How to play</button>
+                        <!-- Modal -->
+                        <div id="overlay">
+                            <div id="modal">
+                                <h2>How to play</h2>
+                                <hr>
+                                    <p>The aim of the game is to answer all five questions before the timer runs out. You have 60 seconds, good luck!</p>
+                                <h3>Controls:</h3>
+                                    <p>'START' to start the countdown timer.</p>
+                                    <p>'NEXT' to move to the next question.</p>
+                                    <p>'RESTART' to reset the quiz.</p>           
+                                <button type="button" id="close-modal-btn" class="modalClose">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!-- scoreboard section -->
+                <div id="scoreboard">
+                    <h2 id="score-title">Your Score</h2>
+                    <div id="score" role="presentation" aria-label="Your final score for the quiz"></div>
+                    <button type="button" id="score-btn-one" onclick="backToQuiz()" aria-label="Click or tap to go back to the quiz">Back to Quiz</button>
+                    <button type="button" id="check-answer" onclick="checkAnswer()" aria-label="Click or tap to check your answers">Check Answers</button>
+                </div>  
+                <!-- Answers section -->
+                <div id="answerBank" role="presentation" aria-label="Your answers">
+                    <h2>Answers :</h2>
+                    <ol type="1" id="answers">
+                    </ol>
+                    <button type="button" id="score-btn-two" onclick="backToQuiz()" aria-label="Click or tap to go back to the quiz">Back to Quiz</button>
+                </div>
         </div>
-
-        <div class="buttons">
-            <button type="button" id="next" class="next">Next</button>
-            <button type="button" value="Refresh" onClick="refresh(this)">Reset</button>
-        </div>
-
-    </div>
-
-    <!-- scoreboard section -->
-    <div id="scoreboard">
-        <h2 id="score-title">Your Score</h2>
-        <div id="score"></div>
-        <button type="button" id="score-btn-one" onclick="backToQuiz()">Back to Quiz</button>
-        <button type="button" id="check-answer" onclick="checkAnswer()">Check Answers</button>
-    </div>
-
-    <!-- answers section -->
-    <div id="answerBank">
-        <h2>Answers :</h2>
-        <ol type="1" id="answers">
-        </ol>
-        
-        <button type="button" id="score-btn-two" onclick="backToQuiz()">Back to Quiz</button>
-    </div>
-
-    <!-- javascript file source -->
-    <script src="/assets/js/script.js"></script>
+    </section>
+    <!-- The footer starts here -->
+    <!-- Share This widget in the footer -->
+    <footer id="footer" aria-labelledby="footer" aria-label="Share the quiz with family and friends on social media">
+        <div><h3 id="footer-text">Share:</h3></div>
+        <div class="sharethis-inline-share-buttons"></div>
+    </footer>
+    <!-- Adding JS file at the bottom of the body closing tag so if the js fails to load, the rest of the elements can still render.-->
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
